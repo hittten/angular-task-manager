@@ -15,4 +15,12 @@ export class TaskListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  create(e: KeyboardEvent) {
+    const input = e.target as HTMLInputElement;
+    if (e.key === 'Enter' && input.value) {
+      input.focus();
+      this.taskService.createTask(input.value);
+      input.value = '';
+    }
+  }
 }

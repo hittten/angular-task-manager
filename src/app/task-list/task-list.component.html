@@ -1,6 +1,6 @@
 <main>
   <label>
-    <input id="taskInput" type="text" placeholder="¿Qué necesitas hacer?">
+    <input (keyup)="create($event)" id="taskInput" type="text" placeholder="¿Qué necesitas hacer?">
   </label>
   <ul id="taskList">
     <li *ngFor="let task of tasks">
