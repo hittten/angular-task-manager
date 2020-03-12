@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from '../task.service';
 import {TaskFilter} from '../task-filter';
-import { Task } from '../task';
+import {Task} from '../task';
 
 @Component({
   selector: 'app-task-list',
@@ -12,8 +12,10 @@ export class TaskListComponent implements OnInit {
   tasks = this.taskService.listTasks(TaskFilter.All);
   updatingTaskId: number;
   deletingTaskId: number;
+  tasksLeft = this.taskService.tasksLeft();
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService) {
+  }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,7 @@ export class TaskListComponent implements OnInit {
       input.focus();
       this.taskService.createTask(input.value);
       input.value = '';
+      this.tasksLeft = this.taskService.tasksLeft();
     }
   }
 
@@ -36,10 +39,12 @@ export class TaskListComponent implements OnInit {
   complete(task: Task, checked: boolean) {
     task.done = checked;
     this.taskService.updateTask(task);
+    this.tasksLeft = this.taskService.tasksLeft();
   }
 
   delete(task: Task) {
     this.taskService.deleteTask(task);
     this.deletingTaskId = null;
+    this.tasksLeft = this.taskService.tasksLeft();
   }
 }
