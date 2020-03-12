@@ -9,7 +9,7 @@
           <input #done type="checkbox" (change)="complete(task, done.checked)" [checked]="task.done">
           <span (click)="updatingTaskId = task.id">{{task.description}}</span>
         </div>
-        <i class="material-icons btn-delete">delete_outline</i>
+        <i (click)="deletingTaskId = task.id" class="material-icons btn-delete">delete_outline</i>
       </div>
       <div *ngIf="task.id === updatingTaskId">
         <input #description type="text" value="{{task.description}}">
@@ -17,6 +17,12 @@
           done
         </i>
       </div>
+      <app-modal *ngIf="task.id === deletingTaskId"
+                 message="¿Estás seguro de que deseas eliminar esta tarea?"
+                 body="{{task.description}}"
+                 (noButton)="deletingTaskId = null"
+                 (yesButton)="delete(task)"
+      ></app-modal>
     </li>
   </ul>
   <div class="info">

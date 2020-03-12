@@ -1,0 +1,10 @@
+<div class="modal">
+  <div class="box">
+    <h2>{{message}}</h2>
+    <p>{{body}}</p>
+    <div>
+      <button (click)="yesButton.emit()" class="button large">Si</button>
+      <button (click)="noButton.emit()" class="button large">No</button>
+    </div>
+  </div>
+</div>

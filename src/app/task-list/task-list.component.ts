@@ -11,6 +11,7 @@ import { Task } from '../task';
 export class TaskListComponent implements OnInit {
   tasks = this.taskService.listTasks(TaskFilter.All);
   updatingTaskId: number;
+  deletingTaskId: number;
 
   constructor(private taskService: TaskService) { }
 
@@ -35,5 +36,10 @@ export class TaskListComponent implements OnInit {
   complete(task: Task, checked: boolean) {
     task.done = checked;
     this.taskService.updateTask(task);
+  }
+
+  delete(task: Task) {
+    this.taskService.deleteTask(task);
+    this.deletingTaskId = null;
   }
 }
