@@ -3,12 +3,20 @@
     <input (keyup)="create($event)" id="taskInput" type="text" placeholder="¿Qué necesitas hacer?">
   </label>
   <ul id="taskList">
-    <li *ngFor="let task of tasks">
-      <div>
-        <input type="checkbox" [checked]="task.done">
-        <span>{{task.description}}</span>
+    <li *ngFor="let task of tasks" [class.updating]="task.id === updatingTaskId">
+      <div *ngIf="task.id !== updatingTaskId">
+        <div>
+          <input type="checkbox" [checked]="task.done">
+          <span (click)="updatingTaskId = task.id">{{task.description}}</span>
+        </div>
+        <i class="material-icons btn-delete">delete_outline</i>
       </div>
-      <i class="material-icons btn-delete">delete_outline</i>
+      <div *ngIf="task.id === updatingTaskId">
+        <input #description type="text" value="{{task.description}}">
+        <i (click)="update(task, description.value)" class="material-icons">
+          done
+        </i>
+      </div>
     </li>
   </ul>
   <div class="info">

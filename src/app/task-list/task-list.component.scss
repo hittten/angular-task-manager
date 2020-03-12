@@ -23,24 +23,24 @@ main ul {
   border-bottom: 1px solid lightgrey;
 }
 
-main ul li {
+main ul li div {
   display: flex;
   margin: 10px 0;
   align-content: center;
   justify-content: space-between;
 }
 
-main ul li div {
+main ul li div div {
   display: flex;
   align-items: baseline;
 }
 
-main ul li.updating div,
-main ul li.updating i.btn-delete {
-  display: none;
-}
+//main ul li.updating div div,
+//main ul li.updating i.btn-delete {
+//  display: none;
+//}
 
-main ul li.updating input {
+main ul li.updating div input {
   width: 100%;
   padding: 10px 5px;
   outline: none;

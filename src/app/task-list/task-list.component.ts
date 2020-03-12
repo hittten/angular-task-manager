@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from '../task.service';
 import {TaskFilter} from '../task-filter';
+import { Task } from '../task';
 
 @Component({
   selector: 'app-task-list',
@@ -9,6 +10,7 @@ import {TaskFilter} from '../task-filter';
 })
 export class TaskListComponent implements OnInit {
   tasks = this.taskService.listTasks(TaskFilter.All);
+  updatingTaskId: number;
 
   constructor(private taskService: TaskService) { }
 
@@ -22,5 +24,11 @@ export class TaskListComponent implements OnInit {
       this.taskService.createTask(input.value);
       input.value = '';
     }
+  }
+
+  update(task: Task, description: string) {
+    task.description = description;
+    this.taskService.updateTask(task);
+    this.updatingTaskId = null;
   }
 }
