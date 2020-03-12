@@ -31,4 +31,9 @@ export class TaskListComponent implements OnInit {
     this.taskService.updateTask(task);
     this.updatingTaskId = null;
   }
+
+  complete(task: Task, checked: boolean) {
+    task.done = checked;
+    this.taskService.updateTask(task);
+  }
 }

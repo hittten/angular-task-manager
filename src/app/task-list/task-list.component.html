@@ -6,7 +6,7 @@
     <li *ngFor="let task of tasks" [class.updating]="task.id === updatingTaskId">
       <div *ngIf="task.id !== updatingTaskId">
         <div>
-          <input type="checkbox" [checked]="task.done">
+          <input #done type="checkbox" (change)="complete(task, done.checked)" [checked]="task.done">
           <span (click)="updatingTaskId = task.id">{{task.description}}</span>
         </div>
         <i class="material-icons btn-delete">delete_outline</i>
