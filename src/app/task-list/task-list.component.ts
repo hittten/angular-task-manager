@@ -13,6 +13,8 @@ export class TaskListComponent implements OnInit {
   updatingTaskId: number;
   deletingTaskId: number;
   tasksLeft = this.taskService.tasksLeft();
+  currentFilter = TaskFilter.All;
+  TaskFilter = TaskFilter;
 
   constructor(private taskService: TaskService) {
   }
@@ -46,5 +48,10 @@ export class TaskListComponent implements OnInit {
     this.taskService.deleteTask(task);
     this.deletingTaskId = null;
     this.tasksLeft = this.taskService.tasksLeft();
+  }
+
+  filter(filter: TaskFilter) {
+    this.currentFilter = filter;
+    this.tasks = this.taskService.listTasks(filter);
   }
 }

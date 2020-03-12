@@ -1,5 +1,5 @@
 export enum TaskFilter {
-  All,
-  Pending,
-  Completed,
+  All = 'all',
+  Pending = 'pending',
+  Completed = 'completed',
 }

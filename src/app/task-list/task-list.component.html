@@ -28,9 +28,18 @@
   <div class="info">
     <p>Quedan {{tasksLeft}} tareas</p>
     <div>
-      <button id="allButton" class="button" disabled>Todas</button>
-      <button id="pendingButton" class="button">Pendientes</button>
-      <button id="completedButton" class="button">Completadas</button>
+      <button (click)="filter(TaskFilter.All)" class="button"
+              [disabled]="currentFilter === TaskFilter.All">
+        Todas
+      </button>
+      <button (click)="filter(TaskFilter.Pending)" class="button"
+              [disabled]="currentFilter === TaskFilter.Pending">
+        Pendientes
+      </button>
+      <button (click)="filter(TaskFilter.Completed)" class="button"
+              [disabled]="currentFilter === TaskFilter.Completed">
+        Completadas
+      </button>
     </div>
   </div>
 </main>
