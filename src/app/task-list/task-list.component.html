@@ -3,10 +3,10 @@
     <input id="taskInput" type="text" placeholder="¿Qué necesitas hacer?">
   </label>
   <ul id="taskList">
-    <li>
+    <li *ngFor="let task of tasks">
       <div>
-        <input type="checkbox">
-        <span>Esto es una tarea sin hacer</span>
+        <input type="checkbox" [checked]="task.done">
+        <span>{{task.description}}</span>
       </div>
       <i class="material-icons btn-delete">delete_outline</i>
     </li>
